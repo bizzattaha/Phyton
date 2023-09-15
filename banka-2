@@ -1,0 +1,269 @@
+import datetime
+import time
+
+e = datetime.datetime.now()
+an = e.strftime('%Y-%m-%d %H:%M:%S')
+
+ahmad = ["Ahmad",1234,1000]
+zeynep = ["Zeynep",4321,2000]
+alberto = ["Alberto",4422,5000]
+
+def account():
+    print("-------- Bank --------")
+    print(" -----%s/%s/%s %s:%s:%s-----" % (e.day, e.month, e.year,e.hour,e.minute,e.second))
+    print("------------------------------")
+    print("Your Name: {}".format(username))
+    print("Your Password: {}".format(password))
+    if username == ahmad[0]:
+        print("Your Balance Amount (TL): {}".format(ahmad[2]))
+    elif username == zeynep[0]:
+        print("Your Balance Amount (TL): {}".format(zeynep[2]))
+    elif username == alberto[0]:
+        print("Your Balance Amount (TL): {}".format(alberto[2]))
+    print("-------------------------------")
+    print("User Activities Reports:\n")
+    print("Your Withdrawals:")
+    print("")
+    print("Your Deposits:")
+    print("")
+    print("Your Transfers:")
+    print("     Time Person Amount:")
+    print("")
+    print("-------------------------------")
+    print("Going back to main menu...")
+    time.sleep(2)
+    menu()
+
+def transfer():
+    global transfer1,transfer2
+    print("Warning: If you want to abort the transfer please enter abort")
+    transfer1 = input("Please enter the name of the user you want transfer money to: ")
+    if transfer1 == 'abort':
+        print("Going back to main menu...")
+        time.sleep(2)
+        menu()
+    if username == ahmad[0]:
+        if transfer1 == zeynep[0]:
+            transfer2 = int(input("Please enter the amount you want to withdraw: "))
+            if transfer2 <= ahmad[2]:
+                zeynep[2] = transfer2 + zeynep[2]
+                ahmad[2] = ahmad[2] - transfer2
+                print("Money Transferred successfully!")
+                print("Going back to main menu...")
+                time.sleep(2)
+                menu()
+            else:
+                print("Insufficient balance")
+                transfer()
+        elif transfer1 == alberto[0]:
+            transfer2 = int(input("Please enter the amount you want to withdraw: "))
+            if transfer2 <= ahmad[2]:
+                alberto[2] = transfer2 + alberto[2]
+                ahmad[2] = ahmad[2] - transfer2
+                print("Money Transferred successfully!")
+                print("Going back to main menu...")
+                time.sleep(2)
+                menu()
+            else:
+                print("Insufficient balance")
+                transfer()
+        elif transfer1 == ahmad[0]:
+            print("Transferring to user with the name {} is not possible!".format(transfer1))
+            print("User does not exits!")
+            transfer()
+    elif username == zeynep[0]:
+        if transfer1 == ahmad[0]:
+            transfer2 = int(input("Please enter the amount you want to withdraw: "))
+            if transfer2 <= zeynep[2]:
+                ahmad[2] = transfer2 + ahmad[2]
+                zeynep[2] = zeynep[2] - transfer2
+                print("Money Transferred successfully!")
+                print("Going back to main menu...")
+                time.sleep(2)
+                menu()
+            else:
+                print("Insufficient balance")
+                transfer()
+        elif transfer1 == alberto[0]:
+            transfer2 = int(input("Please enter the amount you want to withdraw: "))
+            if transfer2 <= zeynep[2]:
+                alberto[2] = transfer2 + alberto[2]
+                zeynep[2] = zeynep[2] - transfer2
+                print("Money Transferred successfully!")
+                print("Going back to main menu...")
+                time.sleep(2)
+                menu()
+            else:
+                print("Insufficient balance")
+                transfer()
+        elif transfer1 == zeynep[0]:
+            print("Transferring to user with the name {} is not possible!".format(transfer1))
+            print("User does not exits!")
+            transfer()
+    elif username == alberto[0]:
+        if transfer1 == ahmad[0]:
+            transfer2 = int(input("Please enter the amount you want to withdraw: "))
+            if transfer2 <= alberto[2]:
+                ahmad[2] = transfer2 + ahmad[2]
+                alberto[2] = alberto[2] - transfer2
+                print("Money Transferred successfully!")
+                print("Going back to main menu...")
+                time.sleep(2)
+                menu()
+            else:
+                print("Insufficient balance")
+                transfer()
+        elif transfer1 == zeynep[0]:
+            transfer2 = int(input("Please enter the amount you want to withdraw: "))
+            if transfer2 <= alberto[2]:
+                zeynep[2] = transfer2 + zeynep[2]
+                alberto[2] = alberto[2] - transfer2
+                print("Money Transferred successfully!")
+                print("Going back to main menu...")
+                time.sleep(2)
+                menu()
+            else:
+                print("Insufficient balance")
+                transfer()
+        elif transfer1 == alberto[0]:
+            print("Transferring to user with the name {} is not possible!".format(transfer1))
+            print("User does not exits!")
+            transfer()
+    else:
+        print("Transferring to user with the name {} is not possible!".format(transfer1))
+        print("User does not exits!")
+        transfer()
+
+def deposit():
+    global deposit1
+    deposit1 = int(input("Pleease enter the amount you want to deposit:"))
+    if deposit1 <= ahmad[2] or deposit1 <= zeynep[2] or deposit1 <= alberto[2]:
+        if username == ahmad[0]:
+            ahmad[2] = ahmad[2] + deposit1
+            print("{} TL withdrawn form your account".format(deposit1))
+            print("Going Back to main menu...")
+            time.sleep(2)
+            menu()
+        elif username == zeynep[0]:
+            zeynep[2] = zeynep[2] + deposit1
+            print("{} TL withdrawn form your account".format(deposit1))
+            print("Going Back to main menu...")
+            time.sleep(2)
+            menu()
+        elif username == alberto[0]:
+            alberto[2] = alberto[2] + deposit1
+            print("{} TL withdrawn form your account".format(deposit1))
+            print("Going Back to main menu...")
+            time.sleep(2)
+            menu()
+        else:
+            print("Incorrect entry")
+            deposit()
+    else:
+        deposit()
+
+def withdraw():
+    global withdraw1
+    withdraw1 = int(input("Please enter the amount you want to withdraw:"))
+    if withdraw1 <= ahmad[2] or withdraw1 <= zeynep[2] or withdraw1 <= alberto[2]:
+        if username == ahmad[0]:
+            ahmad[2] = ahmad[2] - withdraw1
+            print("{} TL withdrawn form your account".format(withdraw1))
+            print("Going Back to main menu...")
+            time.sleep(2)
+            menu()
+        elif username == zeynep[0]:
+            zeynep[2] = zeynep[2] - withdraw1
+            print("{} TL withdrawn form your account".format(withdraw1))
+            print("Going Back to main menu...")
+            time.sleep(2)
+            menu()
+        elif username == alberto[0]:
+            alberto[2] = alberto[2] - withdraw1
+            print("{} TL withdrawn form your account".format(withdraw1))
+            print("Going Back to main menu...")
+            time.sleep(2)
+            menu()
+        else:
+            print("incorrect entry")
+            withdraw()
+    else:
+        print("Insufficient Balance")
+        withdraw()
+
+def menu():
+    global menu_login
+    print("\n ----{} Welcome to Bank----".format(username))
+    print("Please enter the number of the service")
+    print("1. Withdraw Money")
+    print("2. Deposit Money")
+    print("3. Transfer Money")
+    print("4. My Account Information")
+    print("5. Logout")
+    menu_login = int(input(">>>"))
+    if menu_login == 1:
+        withdraw()
+    if menu_login == 2:
+        deposit()
+    if menu_login == 3:
+        transfer()
+    if menu_login == 4:
+        account()
+    if menu_login == 5:
+        login()
+    else:
+        print("incorrect entry")
+        menu()
+
+def user():
+    global username,password
+    username = input("User Name: ")
+    if username == ahmad[0] or username == zeynep[0] or username == alberto[0]:
+        password = int(input("Password: "))
+        if password == ahmad[1]:
+            menu()
+        elif password == zeynep[1]:
+            menu()
+        elif password == alberto[1]:
+            menu()
+        else:
+            print("Password is Incorrect")
+            user()
+    else:
+        print("Username is Incorrect")
+        user()
+
+def login():
+    global login2
+    print("What do you want to login as:")
+    print("1. Admin")
+    print("2. User")
+    print("3. Go Back")
+    login2 = int(input(">>>"))
+    if login2 == 1:
+        admin()
+    elif login2 == 2:
+        user()
+    elif login2 == 3:
+        giris()
+
+def giris():
+    global giris1
+    print("---WELCOME TO BANK---")
+    print("    --------------------")
+    print("   /      ISTANBUL      \ ")
+    print("  | %s/%s/%s %s:%s:%s  |" % (e.day, e.month, e.year,e.hour,e.minute,e.second))
+    print("   \                    / ")
+    print("    --------------------")
+    print("1. Login")
+    print("2. Exit")
+    giris1 = int(input(">>>"))
+    if giris1 == 1:
+        login()
+    elif giris1 == 2:
+        print("Good Bye!")
+    else:
+        print("Please enter a number that is a valid input")
+        time.sleep(3)
+        giris()
+giris()
